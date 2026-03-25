@@ -48,27 +48,5 @@ jobs:
           expected="$(sed -n '/^sha512sums="/,/^"$/p' APKBUILD | grep "  ${tarball_name}$" | awk '{print $1}' | head -n 1)"
           actual="$(sha512sum "$tarball" | awk '{print $1}')"
 
-          echo "expected=${expected}"
-          echo "actual=${actual}"
-          echo "APKBUILD sha512sums block:"
-          sed -n '/^sha512sums="/,/^"$/p' APKBUILD
-          echo "tarball contents:"
-          tar -tvzf "$tarball"
-          echo "source file checksums:"
-          sha512sum \
-            LICENSE \
-            Makefile \
-            README.md \
-            pyproject.toml \
-            setup.py \
-            starter.sample.json \
-            data/io.jaraco.Starter.desktop \
-            data/io.jaraco.Starter.metainfo.xml \
-            data/io.jaraco.Starter.policy \
-            data/io.jaraco.Starter.svg \
-            src/jaraco_starter/__init__.py \
-            src/jaraco_starter/runner.py \
-            tests/test_runner.py
-
           [ -n "$expected" ]
           [ "$expected" = "$actual" ]
