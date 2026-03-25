@@ -312,13 +312,13 @@ Packaging install flow:
 
 ```mermaid
 flowchart TD
-    APKBUILD[APKBUILD package] --> Setup[python3 setup.py install --root pkgdir --prefix /usr]
-    APKBUILD --> Runner[/usr/lib/jaraco-starter/runner]
-    APKBUILD --> Desktop[/usr/share/applications]
-    APKBUILD --> Meta[/usr/share/metainfo]
-    APKBUILD --> Icon[/usr/share/icons/hicolor/scalable/apps]
-    APKBUILD --> Policy[/usr/share/polkit-1/actions]
-    APKBUILD --> Sample[/usr/share/jaraco-starter]
+    APKBUILD["APKBUILD package"] --> Setup["python3 setup.py install --root pkgdir --prefix /usr"]
+    APKBUILD --> Runner["/usr/lib/jaraco-starter/runner"]
+    APKBUILD --> Desktop["/usr/share/applications"]
+    APKBUILD --> Meta["/usr/share/metainfo"]
+    APKBUILD --> Icon["/usr/share/icons/hicolor/scalable/apps"]
+    APKBUILD --> Policy["/usr/share/polkit-1/actions"]
+    APKBUILD --> Sample["/usr/share/jaraco-starter"]
 ```
 
 ## Intended Full Application Design
