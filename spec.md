@@ -186,6 +186,21 @@ make install-sample
 
 ---
 
+**APK‑Installation (lokales Repo)**
+Nach erfolgreichem Build die folgenden Install‑Anweisungen ausgeben:
+```sh
+echo "/home/user/packages/test" | sudo tee -a /etc/apk/repositories
+sudo apk update
+sudo apk add jaraco-starter
+```
+
+**APK‑Installation (direkt aus Datei)**
+```sh
+sudo apk add --allow-untrusted /home/user/packages/test/aarch64/jaraco-starter-0.1.0-r0.apk
+```
+
+---
+
 **Laufzeit‑Verhalten**
 - Bei Start ohne Config wird `starter.sample.json` kopiert.
 - Start‑Fehler zeigen einen Dialog.
