@@ -7,6 +7,7 @@ TARBALL := $(PKGNAME)-$(VERSION).tar.gz
 dist:
 	mkdir -p dist
 	LC_ALL=C tar \
+		--exclude=.git \
 		--exclude=dist \
 		--sort=name \
 		--mtime='UTC 2024-01-01' \
