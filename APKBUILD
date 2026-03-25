@@ -41,5 +41,5 @@ package() {
     install -Dm644 starter.sample.json "$pkgdir/usr/share/jaraco-starter/starter.sample.json"
 }
 sha512sums="
-422249cecfd551cfccec98a4d3f3c436f29c9f0345bde9021e10ae5ca2491d94d5c055cefaccb49fa8153117aeab17f47a7b74d544c8c1f2fae86847536cfbac  jaraco-starter-0.1.0.tar.gz
+48475be784195047e1f759f8d38b47eba6731ff1b088c3ad43ebb0c44f8d658fa082d567e5d2674969d8f043c57d58b4074eb4db7c969d41e06b30be71a79007  jaraco-starter-0.1.0.tar.gz
 "
