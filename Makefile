@@ -26,6 +26,7 @@ dist:
 		--owner=0 \
 		--group=0 \
 		--numeric-owner \
+		--mode=0644 \
 		-cf - $(RELEASE_FILES) | gzip -n > dist/$(TARBALL)
 
 abuild: dist
