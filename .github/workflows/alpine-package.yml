@@ -48,5 +48,10 @@ jobs:
           expected="$(sed -n '/^sha512sums="/,/^"$/p' APKBUILD | grep "  ${tarball_name}$" | awk '{print $1}' | head -n 1)"
           actual="$(sha512sum "$tarball" | awk '{print $1}')"
 
+          echo "expected=${expected}"
+          echo "actual=${actual}"
+          echo "APKBUILD sha512sums block:"
+          sed -n '/^sha512sums="/,/^"$/p' APKBUILD
+
           [ -n "$expected" ]
           [ "$expected" = "$actual" ]
