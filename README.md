@@ -122,7 +122,7 @@ flowchart LR
     Src[Explicit release file list] --> Dist[make dist]
     Dist --> Tarball[jaraco-starter-0.1.0.tar.gz]
     Tarball --> Checksum[APKBUILD sha512sums]
-    Tarball --> Build[abuild package()]
+    Tarball --> Build[abuild package]
     Build --> Apk[.apk package]
 ```
 
