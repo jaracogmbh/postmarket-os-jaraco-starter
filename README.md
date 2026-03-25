@@ -312,7 +312,7 @@ Packaging install flow:
 
 ```mermaid
 flowchart TD
-    APKBUILD[APKBUILD package()] --> Setup[python3 setup.py install --root pkgdir --prefix /usr]
+    APKBUILD[APKBUILD package] --> Setup[python3 setup.py install --root pkgdir --prefix /usr]
     APKBUILD --> Runner[/usr/lib/jaraco-starter/runner]
     APKBUILD --> Desktop[/usr/share/applications]
     APKBUILD --> Meta[/usr/share/metainfo]
