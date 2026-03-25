@@ -1,0 +1,51 @@
+name: Alpine Package Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  alpine-package:
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:3.20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Alpine build dependencies
+        run: |
+          apk add --no-cache bash make tar coreutils python3 py3-setuptools
+
+      - name: Build release tarball
+        run: make dist
+
+      - name: Validate APKBUILD shell syntax
+        run: sh -n APKBUILD
+
+      - name: Validate package file layout
+        run: |
+          test -f setup.py
+          test -f pyproject.toml
+          test -f starter.sample.json
+          test -f data/io.jaraco.Starter.desktop
+          test -f data/io.jaraco.Starter.metainfo.xml
+          test -f data/io.jaraco.Starter.svg
+          test -f data/io.jaraco.Starter.policy
+          test -f src/jaraco_starter/runner.py
+
+      - name: Verify APKBUILD checksum matches generated tarball
+        run: |
+          pkgname="$(awk -F= '/^pkgname=/{print $2}' APKBUILD | tr -d '"')"
+          pkgver="$(awk -F= '/^pkgver=/{print $2}' APKBUILD | tr -d '"')"
+          tarball="dist/${pkgname}-${pkgver}.tar.gz"
+          test -f "$tarball"
+
+          expected="$(awk '/^[0-9a-f]{128}[[:space:]]+[[:alnum:]._-]+$/{print $1; exit}' APKBUILD)"
+          actual="$(sha512sum "$tarball" | awk '{print $1}')"
+
+          [ -n "$expected" ]
+          [ "$expected" = "$actual" ]
