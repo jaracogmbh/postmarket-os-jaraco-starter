@@ -1,0 +1,11 @@
+{
+  "actions": [
+    {
+      "name": "Tor",
+      "script": "/usr/bin/tor",
+      "sudo": true,
+      "kill_command": "/usr/bin/pkill -f /usr/bin/tor",
+      "kill_sudo": true
+    }
+  ]
+}

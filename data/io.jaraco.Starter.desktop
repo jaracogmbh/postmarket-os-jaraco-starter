@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Jaraco Starter
+Exec=jaraco-starter
+Icon=io.jaraco.Starter
+Categories=Utility;
+Terminal=false
