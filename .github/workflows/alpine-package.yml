@@ -41,10 +41,11 @@ jobs:
         run: |
           pkgname="$(awk -F= '/^pkgname=/{print $2}' APKBUILD | tr -d '"')"
           pkgver="$(awk -F= '/^pkgver=/{print $2}' APKBUILD | tr -d '"')"
-          tarball="dist/${pkgname}-${pkgver}.tar.gz"
+          tarball_name="${pkgname}-${pkgver}.tar.gz"
+          tarball="dist/${tarball_name}"
           test -f "$tarball"
 
-          expected="$(awk '/^[0-9a-f]{128}[[:space:]]+[[:alnum:]._-]+$/{print $1; exit}' APKBUILD)"
+          expected="$(sed -n '/^sha512sums="/,/^"$/p' APKBUILD | grep "  ${tarball_name}$" | awk '{print $1}' | head -n 1)"
           actual="$(sha512sum "$tarball" | awk '{print $1}')"
 
           [ -n "$expected" ]
